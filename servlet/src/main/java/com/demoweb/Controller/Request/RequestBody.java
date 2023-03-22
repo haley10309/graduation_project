@@ -3,11 +3,14 @@ package com.demoweb.Controller.Request;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-public class RequestBody {
-
-    @GetMapping("/api/hello")
-    public String test() {
-        return "Hello, world!";
-    }
-}
+import java.util.Arrays;
+//import java.util.List;
+//
+//@RestController
+//public class RequestBody {
+//
+//    @GetMapping("hello")
+//    public List<String> hello() {
+//        return Arrays.asList("안녕하세요", "Hello");
+//    }
+//}
