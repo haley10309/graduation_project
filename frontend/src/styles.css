@@ -1,0 +1,79 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.nav {
+    background-color: darkgreen;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 2rem;
+    padding: 0 1rem;
+}
+
+.site-title{
+    font-size: 2rem;
+}
+
+.nav ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+
+.nav a{
+    color: inherit;
+    text-decoration: none;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: .25rem;
+}
+
+.nav li.active{
+    background-color: darkolivegreen;
+}
+
+.nav li:hover{
+    background-color: #777;
+}
+
+.AboutImg{
+    
+    width: 60%;
+
+    margin: auto;
+    display: block;
+}
+.WordHome{
+    font-size: 2rem;
+    align-items: center;
+    justify-content: center;
+}
+.WordRefer{
+    font-size: 2rem;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+}
+.ProteinImg{
+    width: 60%;
+
+    margin: auto;
+    display: block;
+}
+.Site-explaining{
+    margin: 100px;
+    padding: 10px;
+    font-size: 20px;
+    color: #353535;
+    font-family:  "NanumSquare", sans-serif;
+    text-rendering: optimizeLegibility;
+}
