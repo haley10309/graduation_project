@@ -51,7 +51,7 @@ export default function Search(){
      })
 
 
-     axios.post('http://127.0.0.1:5000/api/Input',{
+     axios.post('/api/Input',{
       proteinName: protein
      }).then(function(response){
       console.log("포스트 완료");
