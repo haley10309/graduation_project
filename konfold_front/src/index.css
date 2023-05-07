@@ -75,14 +75,14 @@
   background-color: #dadada;
   color: white;
 }
-.prediction-page{
+.prediction_page{
   position : relative;
   top : 0;
   bottom: 0;
   width: 70%;
   
   max-width: 1000px;
-  padding:  0 50px;
+  padding:  0 30px;
   
   left: 50%;  
   transform : translate(-50%, 0);
@@ -106,7 +106,7 @@
   color: #262626;
   font-family: Arial, Helvetica, sans-serif;
 }
-.title-N1-1{
+.title-N1{
   
   font-size :20px;
   font-weight: 700;
@@ -115,14 +115,52 @@
 }
 .english-protein-explaination{
 
-  font-size :25px;
+  font-size :20px;
   font-weight: 700;
   color: #262626;
   font-family: Arial, Helvetica, sans-serif;
 }
 .korean-protein-expaination{
-  font-size :25px;
+  font-size :20px;
   font-weight: 700;
   color: #262626;
   font-family: Arial, Helvetica, sans-serif;
+}
+.peptide_img{
+  width: 100%;
+
+  margin: auto;
+  display: block;
+  float: left;
+}
+.amino_img{
+  width: 100%;
+
+  margin: auto;
+  display: block;
+  float: left;
+}
+.protein_kind{
+  font-size :20px;
+  font-weight: 700;
+  color: #262626;
+  font-family:Arial, Helvetica, sans-serif;
+}
+@font-face {
+  font-family: 'SUITE-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+.process_img{
+  width: 100%;
+
+  margin: auto;
+  display: block;
+}
+.img_title{
+ font-size : 15px;
+ font-weight : 300;
+ color:#262626;
+ font-family: 'SUITE-Regular';
 }

@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 
-export default function About() {
+export default function Home() {
   //return <div className="WordHome">Home</div>;
   return (
     <div className="HomeImg">

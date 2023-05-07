@@ -10,6 +10,9 @@ import Refer from "./pages/Refer";
 import HowAlpha from "./pages/HowAlpha";
 import HowRoseta from "./pages/HowRoseta";
 import Prediction from "./pages/Prediction";
+import Pred_mech from "./pages/Pred_mech";
+import Pred_skills from "./pages/Pred_skills";
+import Pred_ability from "./pages/Pred_ability";
 
 
 function App() {
@@ -25,8 +28,10 @@ function App() {
           <Route path="/proteinInput/*" element={ <AFoutput/> } />
           <Route path="/Search/*" element={  <Search/> } />
           <Route path="/About/*" element={  <About/> } />
-          <Route path="/Refer/*" element={  <Refer/> } />
           <Route path="/Refer/Prediction/*" element ={ <Prediction/>} />
+          <Route path="/Refer/Prediction/mechanism/*" element ={ <Pred_mech/>} />
+          <Route path="/Refer/Prediction/ability/*" element ={ <Pred_ability/>} />
+          <Route path="/Refer/Prediction/skills/*" element ={ <Pred_skills/>} />
           <Route path="/Refer/HowAlpha/*" element ={ <HowAlpha/>} />
           <Route path="/Refer/HowRoseta/*" element ={ <HowRoseta/>} />
 
