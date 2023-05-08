@@ -15,11 +15,13 @@ export default function Search(){
 
   const [button, setButton] = useState(true);
 
+  const isAlpha = str => /^[a-zA-Z]*$/.test(str);
+
   function changeButton(){
     const UpperProtein = protein.toUpperCase();
    
    
-    (UpperProtein.includes("B") || UpperProtein.includes("J") || UpperProtein.includes("O") || UpperProtein.includes("X") || UpperProtein.includes("Z") || UpperProtein.includes(" ")) ? setButton(true) : setButton(false)
+    (UpperProtein.includes("B") || UpperProtein.includes("J") || UpperProtein.includes("O") || UpperProtein.includes("X") || UpperProtein.includes("Z") || UpperProtein.includes(" ") || (! isAlpha(UpperProtein))) ? setButton(true) : setButton(false)
 
    }
 
