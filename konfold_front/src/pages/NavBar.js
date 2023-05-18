@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 
 const Navbar = () => {
     const menuLst = ["Search", "About", "Refer"];
-    const [hide, setHide] = useState(false);
+    const [hide, setHide] = useState(true);
     
     const mouseEvent = ( bool) => {
         const change = { ...hide };
@@ -35,10 +35,10 @@ const Navbar = () => {
             </li>
             
             <li  className={hide ? "active" : "none"}
+            onMouseLeave={() => setHide(true)}
             onMouseEnter={() => setHide(false)}
-            onMouseLeave={() => setHide(true)}>
-                {hide && (
-               <p className='ref'>{`Reference`}</p>)}
+            >
+                {hide && (<p className='ref'>{`Reference`}</p>)}
                 
                 {!hide && (<div className='refer-menu'>
         

@@ -154,7 +154,7 @@
 }
 .process_img{
   width: 100%;
-
+  align-content: center;
   margin: auto;
   display: block;
 }
@@ -163,4 +163,11 @@
  font-weight : 300;
  color:#262626;
  font-family: 'SUITE-Regular';
+ text-align: center;
+}
+.ref_left{
+  font-size : 15px;
+  font-weight : 300;
+  font-family: 'SUITE-Regular';
+  text-align: left;
 }

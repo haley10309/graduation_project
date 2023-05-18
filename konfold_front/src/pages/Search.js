@@ -14,14 +14,16 @@ export default function Search(){
   const [proteinName, setProteinName] = useState(""); // 저장 후 변수
 
   const [button, setButton] = useState(true);
-
   const isAlpha = str => /^[a-zA-Z]*$/.test(str);
+    
+    
 
   function changeButton(){
     const UpperProtein = protein.toUpperCase();
    
-   
-    (UpperProtein.includes("B") || UpperProtein.includes("J") || UpperProtein.includes("O") || UpperProtein.includes("X") || UpperProtein.includes("Z") || UpperProtein.includes(" ") || (! isAlpha(UpperProtein))) ? setButton(true) : setButton(false)
+   // UpperProtein.includes('G'||'A'||'V'||'L'||'I'||'S'||'T'||'C'||'M'||'D'||'E'||'N'||'Q'||'K'||'R'||'F'||'Y'||'W'||'H'||'P'||'U') ? setButton(false) : setButton(true)
+    // UpperProtein.includes('G'||'A'||'V'||'L'||'I'||'S'||'T'||'C'||'M'||'D'||'E'||'N'||'Q'||'K'||'R'||'F'||'Y'||'W'||'H'||'P'||'U') ? setButton(false) : setButton(true)
+    (UpperProtein.includes("B") || UpperProtein.includes("J") || UpperProtein.includes("O") || UpperProtein.includes("X") || UpperProtein.includes("Z") || UpperProtein.includes(" ") || (!isAlpha(UpperProtein))) ? setButton(true) : setButton(false)
 
    }
 
@@ -29,7 +31,8 @@ export default function Search(){
   const handleInput = (event) => {
     event.preventDefault();
     setProtein(event.target.value); //변수 저장 완료
-   
+    // const UpperProtein = protein.toUpperCase();
+    // UpperProtein.includes('G' ||'A'||'V'||'L'||'I'||'S'||'T'||'C'||'M'||'D'||'E'||'N'||'Q'||'K'||'R'||'F'||'Y'||'W'||'H'||'P'||'U') ? setButton(false) : setButton(true)
   };
   
   
@@ -39,7 +42,7 @@ export default function Search(){
     setProteinName(protein);
     
 
-    //window.location.href = "/proteinInput";
+    window.location.href = "/proteinInput";
 
     // const result = await axios.get('http://127.0.0.1:5000/api/Input');
     // this.recordCount = result.headers["x-totalrecordcount"];
