@@ -42,7 +42,7 @@ export default function Search(){
     setProteinName(protein);
     
 
-    window.location.href = "/proteinInput";
+    //window.location.href = "/proteinInput";
 
     // const result = await axios.get('http://127.0.0.1:5000/api/Input');
     // this.recordCount = result.headers["x-totalrecordcount"];

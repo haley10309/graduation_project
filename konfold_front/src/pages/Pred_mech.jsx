@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from 'styled-components';
-import NavBar_Prediction from '/Users/hayungyoo/konfold/konfold_front/src/pages/NavBar_Prediction.js';
+import NavBar_Prediction from '/Users/hayungyoo/project/konfold_front/src/pages/NavBar_Prediction.js';
 
 
 export default function Pred_mech(){
