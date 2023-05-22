@@ -169,3 +169,9 @@ body {
 .prediction_nav li:hover{
     background-color: #777;
 }
+
+.mol-container {
+  width: 60%;
+  height: 400px;
+  position: relative;
+}
