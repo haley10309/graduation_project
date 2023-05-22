@@ -24,7 +24,9 @@ const Navbar = () => {
         {/* 대 메뉴  */}
         
         <ul className="navContainer">
-         
+            <li>
+                <a href="/AlphaFold">AlphaFold</a>
+            </li>
        
             
             <li>

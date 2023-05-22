@@ -29,7 +29,7 @@ return (
         3. 주요 기술
       </h1>
       <h1 className="title-N1">
-      CNN(합성곱 신경망, Convolutional Neural Networks, ConvNet)
+      (1) CNN(합성곱 신경망, Convolutional Neural Networks, ConvNet)
       </h1>
 
       <h1 className="korean-protein-expaination">
@@ -68,7 +68,20 @@ return (
        <div>
         <img className="process_img" alt="role" src="/img/poolingLayer.png" />
       </div>
-
+      <h1 className="title-N1">
+      (2) Transformer
+      </h1>
+      <h1 className="korean-protein-expaination">
+      <Span /><Span />
+      2017년 NIPS를 통해 발표된 모델로, NLP(Natural Language Processing, 자연어처리) 분야에서 ‘Attention’이라는 메커니즘을 활용해 만든 번역기로부터 처음 등장했다. 현재 단어 vector를 input으로 사용하는 NLP 분야부터 이미지 feature vector를 input으로 하는 CV(Computer Vision, 컴퓨터비전)까지 다양하게 사용된다. 
+AlphaFold와 RoseTTAFold는 바로 CNN 대신 이 기술을 사용한다. CNN에서는 바로 옆 픽셀의 정보만 학습에 영향을 주는 반면 Attention의 경우 멀리 떨어진 곳의 정보도 활용하며, 연관도에 따라 정보를 가져오는 양을 조절할 수 있다. 이것은 서로 멀리 떨어진 잔기들도 서로 관련이 있는 단백질 구조를 예측하는 데에 효과적이다.
+       </h1>
+       <div>
+        <img className="process_img" alt="role" src="/img/skills_transformer.png" />
+      </div>
+      <div>
+        <img className="process_img" alt="role" src="/img/skills_block.png" />
+      </div>
 
 
 

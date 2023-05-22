@@ -6,13 +6,16 @@ import Navbar from "./pages/NavBar";
 import About from "./pages/About";
 import Search from "./pages/Search";
 import Home from "./pages/Home";
-import Refer from "./pages/Refer";
-import HowAlpha from "./pages/HowAlpha";
-import HowRoseta from "./pages/HowRoseta";
-import Prediction from "./pages/Prediction";
-import Pred_mech from "./pages/Pred_mech";
-import Pred_skills from "./pages/Pred_skills";
-import Pred_ability from "./pages/Pred_ability";
+import Refer from "./pages/Reference/Refer";
+import HowAlpha from "./pages/Reference/HowAlpha";
+import HowRoseta from "./pages/Reference/HowRoseta";
+import Prediction from "./pages/Reference/Prediction";
+import Pred_mech from "./pages/Reference/Pred_mech";
+import Pred_skills from "./pages/Reference/Pred_skills";
+import Pred_ability from "./pages/Reference/Pred_ability.jsx";
+import AlphaFold from "./pages/AlphaFold";
+import AlphaOutput from "./pages/AlphaOutput";
+
 
 
 function App() {
@@ -27,6 +30,8 @@ function App() {
           <Route path="/" element={ <Home/> } />
           <Route path="/proteinInput/*" element={ <AFoutput/> } />
           <Route path="/Search/*" element={  <Search/> } />
+          <Route path="/AlphaFold/*" element={  <AlphaFold/> } />
+          <Route path="/AlphaOutput/*" element={  <AlphaOutput/> } />
           <Route path="/About/*" element={  <About/> } />
           <Route path="/Refer/Prediction/*" element ={ <Prediction/>} />
           <Route path="/Refer/Prediction/mechanism/*" element ={ <Pred_mech/>} />
