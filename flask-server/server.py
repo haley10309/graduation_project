@@ -25,16 +25,15 @@ def join_post():
         
         # # 예외처리 
         try:
-            q = Query(seq, 
-            query_type="sequence", 
-            return_type="polymer_entity")
+            print(seq['proteinName'])
+            # q = Query(seq, query_type="sequence", return_type="polymer_entity")
 
             # 데이터 추출 완료!
-            tmp = q.search()['result_set'][0]['identifier']
+            tmp = Query(seq['proteinName'], query_type="sequence", return_type="polymer_entity").search(10)['result_set'][0]['identifier']
             tmp = tmp.split("_")[0]
             print(tmp)
             
-            return tmp
+            return {"proteinId":tmp} # 프론트로 전송
                 
         # 예외가 발생했을 때 실행됨
         except Exception as e:              
