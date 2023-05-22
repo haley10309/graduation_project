@@ -104,6 +104,9 @@ export default function Search(){
           확인
         </button>
       </div>
+      <div className="inputTitle"> 
+        단백질 3D 구조 시각화 화면입니다
+      </div>
     </div>
   );
 }
