@@ -1,0 +1,27 @@
+.App{
+}
+ /* 나눔 명조 */
+@font-face { 
+    font-family : "Nanum Myeongjo";
+    font-weight: 700;
+    src: url(./NaverNanumSquareNeo/TTF/NanumSquareNeo-dEb.ttf) format("woff");
+
+}
+
+@font-face {
+    font-family: "Roboto Regular";
+    font-weight: 400;
+    src: url("./Roboto/Roboto-Regular.ttf") format("woff");
+
+}
+@font-face {
+    font-family: "Roboto Bold";
+    font-weight: 500;
+    src: url("./Roboto/Roboto-Medium.ttf") format("woff");
+
+}
+
+@font-face {
+    font-family: "NanumSquare";
+    src: url("./Roboto/Roboto-Regular.ttf") format("woff");
+}
