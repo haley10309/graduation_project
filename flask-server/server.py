@@ -2,7 +2,8 @@ from flask import Flask,request,render_template,Response, redirect
 import json
 from http import HTTPStatus
 from flask import jsonify
-# import visualization
+from pypdb import *
+from IPython.display import HTML
 
 
 app = Flask(__name__)
@@ -22,23 +23,18 @@ def join_post():
         if not seq:
             raise ValueError
         
-        # 예외처리 : 만약 영어가 아니라면 예외처리
+        # # 예외처리 
         try:
-            if(seq['proteinName'].encode().isalpha() == True):
+            q = Query(seq, 
+            query_type="sequence", 
+            return_type="polymer_entity")
 
-        # 소문자->대문자화
-                seq['proteinName'] = seq['proteinName'].upper()
-                print(seq['proteinName'])
-                
-        # 예외처리 : 아미노산 20개 배열과 일치하지 않은게 있다면 예외처리   
-                uni = list(set(seq['proteinName']) - set(AminSeq))   
-                if (len(uni)>0):
-                    raise ValueError
-                
-                return Response(json.dumps(seq))
-            else:
-                print(seq['proteinName'])
-                raise ValueError
+            # 데이터 추출 완료!
+            tmp = q.search()['result_set'][0]['identifier']
+            tmp = tmp.split("_")[0]
+            print(tmp)
+            
+            return tmp
                 
         # 예외가 발생했을 때 실행됨
         except Exception as e:              
