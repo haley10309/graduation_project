@@ -213,7 +213,47 @@ function Span({ space = 20 }){
       <Span /><Span />--db_preset=reduced_dbs 	//database		
       <Span /><Span />--output_dir=/[filename]/output/	//output파일의 경로입력
       </div>
-
+      <h1 className="title-N1">
+        참고
+      </h1>
+      <h1 className="korean-protein-expaination">
+      “AlphaFoldv2 open-source code”, https://github.com/deepmind/alphafold
+      </h1>
+      <h1 className="korean-protein-expaination">
+      “2021-Highly accurate protein structure prediction with AlphaFold”,
+https://www.nature.com/articles/s41586-021-03819-2
+      </h1>
+      <h1 className="korean-protein-expaination">
+      “2021-Supplementary information for: Highly accurate protein structure prediction with AlphaFold”,
+https://www.uvio.bio/alphafold-architecture/AlphaFold-Supplementary-Information.pdf
+      </h1>
+      <h1 className="korean-protein-expaination">
+      “2022-AlphaFold Protein Structure Database: massively expanding the structural coverage of protein-sequence space with high-accuracy models”,
+https://academic.oup.com/nar/article/50/D1/D439/6430488?login=false
+      </h1>
+      <h1 className="korean-protein-expaination">
+      “AlphaFold webpage(DeepMind)”, 
+https://www.deepmind.com/research/highlighted-research/alphafold
+      </h1>
+      <h1 className="korean-protein-expaination">
+      “[Review] AlphaFold2”, https://ocxanc.tistory.com/51
+      </h1>
+      <h1 className="korean-protein-expaination">
+      “알파폴드2모델분석”, https://taehojo.github.io/alphafold/alphafold2.html
+      </h1>
+      <h1 className="korean-protein-expaination">
+      “Alphfafold2 논문리뷰1[성능]”, https://happyhaelee.tistory.com/m/96
+      </h1>
+      <h1 className="korean-protein-expaination">
+      “Alphfafold2 논문리뷰2[입력부분]”, https://happyhaelee.tistory.com/m/98
+      </h1>
+      <h1 className="korean-protein-expaination">
+      “Alphfafold2 논문리뷰4[Evoformer-pair representation]”, https://happyhaelee.tistory.com/m/99
+      </h1>
+      <h1 className="korean-protein-expaination">
+      “[초심자를 위한 생물학+정보학] 알파폴드의 설치와 사용: 깃, 도커, 그리고 엔비디아”,
+https://www.ibric.org/myboard/read.php?Board=news&id=337509 
+      </h1>
 
     </div>
   );

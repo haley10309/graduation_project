@@ -79,9 +79,13 @@
   position : relative;
   top : 0;
   bottom: 0;
-  width: 70%;
+  width: 90%;
   max-width: 1000px;
   padding:  0 20px;
+
+  letter-spacing: normal;
+  word-spacing: 3px;
+  line-height: 25pt;
   
   left: 50%;  
   transform : translate(-50%, 0);
