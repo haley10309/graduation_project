@@ -7,7 +7,7 @@ body {
 }
 
 .nav {
-    background-color: darkgreen;
+    background-color: rgb(34, 121, 34);
     color: white;
     display: flex;
     justify-content: space-between;
@@ -47,7 +47,7 @@ body {
 }
 
 .nav li:hover{
-    background-color: #777;
+    background-color: #62936d;
 }
 
 .AboutImg{

@@ -75,6 +75,27 @@
   background-color: #dadada;
   color: white;
 }
+.code_page{
+  position : relative;
+  top : 0;
+  bottom: 0;
+  width: 90%;
+  max-width: 1000px;
+  padding:  0 20px;
+
+  letter-spacing: normal;
+  word-spacing: 3px;
+  line-height: 25pt;
+  
+  left: 50%;  
+  transform : translate(-50%, 0);
+
+  background-color: #dfe7e1 ;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+}
 .prediction_page{
   position : relative;
   top : 0;
@@ -115,14 +136,14 @@
 }
 .english-protein-explaination{
 
-  font-size :20px;
-  font-weight: 700;
+  font-size :17px;
+  font-weight: 500;
   color: #262626;
   font-family: Arial, Helvetica, sans-serif;
 }
 .korean-protein-expaination{
-  font-size :20px;
-  font-weight: 700;
+  font-size :17px;
+  font-weight: 500;
   color: #262626;
   font-family: Arial, Helvetica, sans-serif;
 }

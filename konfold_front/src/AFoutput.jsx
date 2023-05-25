@@ -5,33 +5,19 @@ import $ from 'jquery'
 
 export default function AFoutput() {
 
-  const [value, setValue] = useState({
-    proteinId : ""
-  });
+  const [Id, setId] = useState([]);
 
-  const handleChange = (e) => {
-    setValue(e.nativeEvent.target.value);
-  };
-
-  const handleClick = () => {
-    alert("현재 폼의 값은 ${value} 입니다");
-  };
+  
 
   useEffect(() => {
     fetch("/api/Input", {
-            method : "POST",
-            headers : {
-                "Content-Type":"application/json; charset=utf-8"
-            },
-            body: JSON.stringify(value)
+            method : "GET",
         })
-        .then(res=>{
-            console.log(res)
-            return res.json();
-        })
-        .then(res=> {
-            console.log(res);
+        .then(res=> res.json()).then(res => {
+          console.log(res);
+          setId(res);
         });
+          
 
 
     const script = document.createElement("script");
