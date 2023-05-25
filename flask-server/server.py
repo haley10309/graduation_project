@@ -17,9 +17,9 @@ def join_post():
     
     # 아미노산 염기서열
     AminSeq = ["G","A","V","L","I","S","T","C","M","D","E","N","Q","K","R","F","Y","W","H","P","U"]
-    
+    headers = {'Accept': 'application/json'}
     if request.method == 'GET':
-        seq = request.get_json()
+        seq = request.args.get('http://127.0.0.1:5000/api/Input', headers = headers)
         if not seq:
             raise ValueError
         
