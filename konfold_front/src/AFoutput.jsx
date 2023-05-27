@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import * as $3Dmol from '3dmol/build/3Dmol.js';
-import $ from 'jquery'
+import $ from 'jquery';
 
 export default function AFoutput() {
 
@@ -10,13 +10,31 @@ export default function AFoutput() {
   
 
   useEffect(() => {
-    fetch("/api/Input", {
-            method : "GET",
+    // fetch("/api/Input")
+    //     .then(res=> res.json())
+    //     .then(res => {
+    //       console.log(res);
+    //       setId(res);
+    //     });
+
+        fetch("/api/Input", {
+          method : "POST",
+          headers : {
+            "Content-Type" : "application/json; charset=utf-8"
+          },
+          body : JSON.stringify(Id)
         })
-        .then(res=> res.json()).then(res => {
+        .then(res=> {
           console.log(res);
-          setId(res);
-        });
+          //json 파싱전 , 상태 코드 확인 해서 res 값 초기화
+        })
+        .then(res=> {
+          console.log(res);
+          //res 값에 따른 결과 처리
+          if(res == null){
+            alert("등록 실패");
+          }
+        })
           
 
 
@@ -24,7 +42,7 @@ export default function AFoutput() {
     script.src = "https://3Dmol.org/build/3Dmol-min.js";
     script.async = true;
     document.body.appendChild(script);
-  });
+  },[]);
 
   // 시각화
   $(function() {
