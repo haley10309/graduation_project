@@ -12,6 +12,7 @@ export default function Search(){
     
   const [protein, setProtein] = useState(""); //입력 값 변수 [입력값, 입력값 변경]
   const [proteinName, setProteinName] = useState(""); // 저장 후 변수
+  const [Id, setId] = useState([]);
 
   const [button, setButton] = useState(true);
   const isAlpha = str => /^[a-zA-Z]*$/.test(str);
@@ -63,6 +64,23 @@ export default function Search(){
      }).catch(function (error){
       console.log(error);
      })
+
+     fetch("/api/Input", {
+      method : "POST",
+      headers : {
+        "Content-Type" : "application/json; charset=utf-8"
+      }
+    }).then(res=> {
+      console.log(res);
+      //json 파싱전 , 상태 코드 확인 해서 res 값 초기화
+    }).then(res=> {
+      console.log(res);
+      setId(res);
+      //res 값에 따른 결과 처리
+      if(res == null){
+        alert("등록 실패");
+      }
+    })
 
      
      

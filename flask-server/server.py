@@ -4,43 +4,44 @@ from http import HTTPStatus
 from flask import jsonify
 from pypdb import *
 from IPython.display import HTML
-from flask_cors import CORS
+# from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
+# CORS(app)
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/api/Input', methods=['GET','POST'])
+@app.route('/api/Input', methods=['POST'])
 def join_post():
-    
-    if request.method == 'POST':
-        seq = request.get_json()
-        if not seq:
-            raise ValueError
+
+    seq = request.get_json()
+    if not seq:
+        raise ValueError
             
-        try:
-            print(seq['proteinName'])
-            tmp = Query(seq['proteinName'], query_type="sequence", return_type="polymer_entity").search(10)['result_set'][0]['identifier']
-            tmp = tmp.split("_")[0]
-            print(tmp)
+    try:
+        print(seq['proteinName'])
+        tmp = Query(seq['proteinName'], query_type="sequence", return_type="polymer_entity").search(10)['result_set'][0]['identifier']
+        tmp = tmp.split("_")[0]
+        print(tmp)
+        protId = {"proteinId": tmp}
                 
-            return {"proteinId": tmp}
+        # return {"proteinId": tmp}
+        return jsonify(protId)
+    
                     
-        except Exception as e:              
-            print('예외가 발생했습니다.', e)
-            result = {
+    except Exception as e:              
+        print('예외가 발생했습니다.', e)
+        result = {
                 'code': 200,
                 'description': "아미노산 서열 이외의 값을 입력",
                 'message': "아미노산 서열 이외의 값을 입력하였습니다."
             }
         
-            return Response(json.dumps(result, ensure_ascii=False).encode('utf8'), content_type='application/json; charset=utf-8')
+        return Response(json.dumps(result, ensure_ascii=False).encode('utf8'), content_type='application/json; charset=utf-8')
 
-    else:
-        return "ok"
-    
+
+  
 if __name__ == "__main__":
     app.run(debug=True)
