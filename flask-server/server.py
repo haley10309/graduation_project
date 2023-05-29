@@ -4,6 +4,8 @@ from http import HTTPStatus
 from flask import jsonify
 from pypdb import *
 from IPython.display import HTML
+from react.render import render_component
+
 # from flask_cors import CORS
 
 app = Flask(__name__)
@@ -15,7 +17,6 @@ def index():
 
 @app.route('/api/Input', methods=['POST'])
 def join_post():
-
     seq = request.get_json()
     if not seq:
         raise ValueError
@@ -24,11 +25,13 @@ def join_post():
         print(seq['proteinName'])
         tmp = Query(seq['proteinName'], query_type="sequence", return_type="polymer_entity").search(10)['result_set'][0]['identifier']
         tmp = tmp.split("_")[0]
-        print(tmp)
+        print(tmp+ "예")
         protId = {"proteinId": tmp}
                 
         # return {"proteinId": tmp}
-        return jsonify(protId)
+        #return jsonify(protId)
+        rendered = render_component('konfold_front/src/AFoutput.jsx',)
+        return Response(json.dumps(protId, ensure_ascii=False).encode('utf8'), content_type='application/json; charset=utf-8')
     
                     
     except Exception as e:              
@@ -40,6 +43,7 @@ def join_post():
             }
         
         return Response(json.dumps(result, ensure_ascii=False).encode('utf8'), content_type='application/json; charset=utf-8')
+    
 
 
   

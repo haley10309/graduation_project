@@ -3,8 +3,8 @@ import axios from "axios";
 import { Link } from "react-router-dom"; 
 import { useEffect } from "react";
 import { useState } from "react";
-import instance from "../Request";
-import qs from "qs";
+
+
 
 
 
@@ -43,7 +43,7 @@ export default function Search(){
     setProteinName(protein);
     
 
-    window.location.href = "/proteinInput";
+    //window.location.href = "/proteinInput";
 
     // const result = await axios.get('http://127.0.0.1:5000/api/Input');
     // this.recordCount = result.headers["x-totalrecordcount"];
@@ -57,33 +57,32 @@ export default function Search(){
     //  })
 
 
-     axios.post('/api/Input',{
-      proteinName: protein
-     }).then(function(response){
-      console.log("포스트 완료");
-     }).catch(function (error){
-      console.log(error);
-     })
-
-     fetch("/api/Input", {
-      method : "POST",
-      headers : {
-        "Content-Type" : "application/json; charset=utf-8"
-      }
-    }).then(res=> {
-      console.log(res);
-      //json 파싱전 , 상태 코드 확인 해서 res 값 초기화
-    }).then(res=> {
-      console.log(res);
-      setId(res);
-      //res 값에 따른 결과 처리
-      if(res == null){
-        alert("등록 실패");
-      }
-    })
-
      
+         await axios.post('/api/Input',{
+          proteinName: protein
+        }).then(function(response){
+          console.log("포스트 완료");
+        }).catch(function (error){
+          console.log(error);
+        })
      
+         fetch("/api/Input", {
+          method : "POST",
+          headers : {
+            "Content-Type" : "application/json; charset=utf-8"
+          }
+        }).then(res=> {
+          let hand = JSON.stringify(res);
+          console.log( hand + "얍");
+          //json 파싱전 , 상태 코드 확인 해서 res 값 초기화
+        }).then(res=> {
+          console.log(res + "얍");
+          setId(res);
+          //res 값에 따른 결과 처리
+          if(res == null){
+            alert("등록 실패");
+          }
+        })
     
     //console.log(protein);
 
@@ -93,6 +92,25 @@ export default function Search(){
     localStorage.setItem("proteinName", protein);
     //localstorage 업로드
   };
+  // const postForm = () => {
+  //   await fetch("/api/Input", {
+  //     method : "POST",
+  //     headers : {
+  //       "Content-Type" : "application/json; charset=utf-8"
+  //     }
+  //   }).then(res=> {
+  //     let hand = JSON.stringify(res);
+  //     console.log( hand + "얍");
+  //     //json 파싱전 , 상태 코드 확인 해서 res 값 초기화
+  //   }).then(res=> {
+  //     console.log(res + "얍");
+  //     setId(res);
+  //     //res 값에 따른 결과 처리
+  //     if(res == null){
+  //       alert("등록 실패");
+  //     }
+  //   })
+  // }
 
   return (
     <div className="page">

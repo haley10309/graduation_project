@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import * as $3Dmol from '3dmol/build/3Dmol.js';
 import $ from 'jquery';
+import Search from "./pages/Search";
 
-export default function AFoutput() {
+
+export default function AFoutput()  {
   
   useEffect(() => {
     // fetch("/api/Input")
@@ -12,7 +14,7 @@ export default function AFoutput() {
     //       console.log(res);
     //       setId(res);
     //     });
-
+ 
     const script = document.createElement("script");
     script.src = "https://3Dmol.org/build/3Dmol-min.js";
     script.async = true;
@@ -39,7 +41,11 @@ export default function AFoutput() {
       
 
   return (
+    <div>
+      
   <div id="id" className="mol-container"></div>
+  </div>
   );
+
 
   }

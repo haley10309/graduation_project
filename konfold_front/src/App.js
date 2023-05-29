@@ -1,4 +1,3 @@
-import Login from "./pages/Home"
 import React, { Component } from 'react';
 import { BrowserRouter,Route, Routes } from "react-router-dom";
 import AFoutput from "./AFoutput";
@@ -6,7 +5,6 @@ import Navbar from "./pages/NavBar";
 import About from "./pages/About";
 import Search from "./pages/Search";
 import Home from "./pages/Home";
-import Refer from "./pages/Reference/Refer";
 import HowAlpha from "./pages/Reference/HowAlpha";
 import HowRoseta from "./pages/Reference/HowRoseta";
 import Prediction from "./pages/Reference/Prediction";

@@ -33,7 +33,7 @@ const Navbar = () => {
                 <a href="/Search">Search</a>
             </li>
             <li>
-                <a href="/About">About</a>
+                <a href="/About">People</a>
             </li>
             
             <li  className={hide ? "active" : "none"}
