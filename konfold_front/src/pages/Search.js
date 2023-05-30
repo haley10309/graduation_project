@@ -58,7 +58,7 @@ export default function Search(){
 
 
      
-         axios.post('/api/Input',{
+         await axios.post('/api/Input',{
           proteinName: protein
         }).then(function(response){
           console.log("포스트 완료");
@@ -87,7 +87,7 @@ export default function Search(){
           }
         })
 
-        window.location.href = "/proteinInput";
+        //window.location.href = "/proteinInput";
     
     //console.log(protein);
 

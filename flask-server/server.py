@@ -15,7 +15,7 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route('/api/Input', methods=['GET'])
+@app.route('/api/Input', methods=['POST'])
 def join_post():
     seq = request.get_json()
     if not seq:
