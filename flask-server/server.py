@@ -27,10 +27,11 @@ def join_post():
         tmp = tmp.split("_")[0]
         print(tmp+ "예")
         protId = {"proteinId": tmp}
+        print(protId)
                 
         # return {"proteinId": tmp}
-        #return jsonify(protId)
-        rendered = render_component('konfold_front/src/AFoutput.jsx',)
+        # return (tmp)
+        # rendered = render_component('konfold_front/src/AFoutput.jsx',)
         return Response(json.dumps(protId, ensure_ascii=False).encode('utf8'), content_type='application/json; charset=utf-8')
     
                     

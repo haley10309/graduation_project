@@ -72,45 +72,32 @@ export default function Search(){
             "Content-Type" : "application/json; charset=utf-8"
           }
         }).then(res=> {
+          console.log(res+"res 데이터 그대로")
           let hand = JSON.stringify(res);
-          console.log( hand + "얍");
+          console.log( hand + "얍1");
           //json 파싱전 , 상태 코드 확인 해서 res 값 초기화
         }).then(res=> {
-          console.log(res + "얍");
+          let hand = JSON.stringify(res);
+          console.log( hand + "얍2");
+          console.log(res + "얍3");
           setId(res);
           //res 값에 따른 결과 처리
           if(res == null){
-            alert("등록 실패");
+            console.log("가공 데이터 가져오기 실패");
           }
         })
+
+        //window.location.href = "/proteinInput";
     
     //console.log(protein);
 
     
     //api post
       
-    localStorage.setItem("proteinName", protein);
+    localStorage.setItem('proteinName', protein);
     //localstorage 업로드
   };
-  // const postForm = () => {
-  //   await fetch("/api/Input", {
-  //     method : "POST",
-  //     headers : {
-  //       "Content-Type" : "application/json; charset=utf-8"
-  //     }
-  //   }).then(res=> {
-  //     let hand = JSON.stringify(res);
-  //     console.log( hand + "얍");
-  //     //json 파싱전 , 상태 코드 확인 해서 res 값 초기화
-  //   }).then(res=> {
-  //     console.log(res + "얍");
-  //     setId(res);
-  //     //res 값에 따른 결과 처리
-  //     if(res == null){
-  //       alert("등록 실패");
-  //     }
-  //   })
-  // }
+  
 
   return (
     <div className="page">

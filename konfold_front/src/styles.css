@@ -10,6 +10,7 @@ body {
     background-color: rgb(34, 121, 34);
     color: white;
     display: flex;
+    position: relative;
     justify-content: space-between;
     align-items: stretch;
     gap: 2rem;
@@ -21,6 +22,7 @@ body {
 }
 
 .nav ul{
+  position: relative;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -29,6 +31,7 @@ body {
 }
 
 .nav a{
+  position: relative;
     color: inherit;
     text-decoration: none;
     height: 100%;
@@ -171,7 +174,10 @@ body {
 }
 
 .mol-container {
-  width: 60%;
+  width: 100%;
   height: 400px;
   position: relative;
+  display: flex;
+  margin-top: 40px;
+  padding:  0 20px;
 }
