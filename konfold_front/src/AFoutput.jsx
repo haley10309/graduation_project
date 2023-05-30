@@ -51,7 +51,7 @@ export default function AFoutput()  {
     <div className="page">
       
   <div id="id" className="mol-container"></div>
-  <li className="korean-protein-expaination">`${setProtein_input}`</li>
+  <li className="korean-protein-expaination"></li>
   </div>
 
   );

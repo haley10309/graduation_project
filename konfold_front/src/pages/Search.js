@@ -87,7 +87,7 @@ export default function Search(){
           }
         })
 
-        //window.location.href = "/proteinInput";
+        window.location.href = "/proteinInput";
     
     //console.log(protein);
 
