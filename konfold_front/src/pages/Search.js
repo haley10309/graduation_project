@@ -9,7 +9,7 @@ import { useState } from "react";
 
 
 export default function Search(){
-    
+  
   const [protein, setProtein] = useState(""); //입력 값 변수 [입력값, 입력값 변경]
   const [proteinName, setProteinName] = useState(""); // 저장 후 변수
   const [Id, setId] = useState([]);
@@ -58,7 +58,7 @@ export default function Search(){
 
 
      
-         await axios.post('/api/Input',{
+         axios.post('/api/Input',{
           proteinName: protein
         }).then(function(response){
           console.log("포스트 완료");
@@ -87,7 +87,7 @@ export default function Search(){
           }
         })
 
-        //window.location.href = "/proteinInput";
+        window.location.href = "/proteinInput";
     
     //console.log(protein);
 

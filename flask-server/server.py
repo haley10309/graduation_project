@@ -15,7 +15,7 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route('/api/Input', methods=['POST'])
+@app.route('/api/Input', methods=['GET'])
 def join_post():
     seq = request.get_json()
     if not seq:
@@ -30,9 +30,9 @@ def join_post():
         print(protId)
                 
         # return {"proteinId": tmp}
-        # return (tmp)
+        return (protId)
         # rendered = render_component('konfold_front/src/AFoutput.jsx',)
-        return Response(json.dumps(protId, ensure_ascii=False).encode('utf8'), content_type='application/json; charset=utf-8')
+        # return Response(json.dumps(protId, ensure_ascii=False).encode('utf8'), content_type='application/json; charset=utf-8')
     
                     
     except Exception as e:              
