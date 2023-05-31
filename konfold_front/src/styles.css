@@ -97,10 +97,10 @@ body {
     transition: 0.25s ease-in-out;
   }
   
-  .nav:hover {
+  /* .nav:hover {
     height: 200px;
     cursor: pointer;
-  }
+  } */
   
   .nav .navContainer {
     height: 80px;
