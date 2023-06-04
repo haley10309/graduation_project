@@ -41,6 +41,13 @@ export default function Search(){
     // 확인 후 다음 페이지
     event.preventDefault();
     setProteinName(protein);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> f18f8f95587abae747ac7748abed4e21a12d88da
+>>>>>>> c51d062e (새로 커밋)
     
 
     //window.location.href = "/proteinInput";
@@ -58,15 +65,37 @@ export default function Search(){
 
 
      
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+         await axios.post('/api/Input',{//input 을 서버에 전달하는 코드
+          proteinName: protein
+        }).then(function(response){
+          console.log("포스트 완료");
+
+=======
+>>>>>>> c51d062e (새로 커밋)
          await axios.post('/api/Input',{
           proteinName: protein
         }).then(function(response){
           console.log("포스트 완료");
+<<<<<<< HEAD
+=======
+>>>>>>> f18f8f95587abae747ac7748abed4e21a12d88da
+>>>>>>> c51d062e (새로 커밋)
         }).catch(function (error){
           console.log(error);
         })
      
+<<<<<<< HEAD
          fetch("/api/Input", {
+=======
+<<<<<<< HEAD
+         fetch("/api/Input", {//output 받는 코드
+=======
+         fetch("/api/Input", {
+>>>>>>> f18f8f95587abae747ac7748abed4e21a12d88da
+>>>>>>> c51d062e (새로 커밋)
           method : "POST",
           headers : {
             "Content-Type" : "application/json; charset=utf-8"
