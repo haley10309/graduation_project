@@ -1,23 +1,32 @@
 import React from "react";
-import axios from "axios";
+import axios from 'axios'  ;
 import { Link } from "react-router-dom"; 
 import { useEffect } from "react";
 import { useState } from "react";
 
 
 
-
-
 export default function Search(){
-  
+    
   const [protein, setProtein] = useState(""); //입력 값 변수 [입력값, 입력값 변경]
   const [proteinName, setProteinName] = useState(""); // 저장 후 변수
-  const [Id, setId] = useState([]);
 
   const [button, setButton] = useState(true);
   const isAlpha = str => /^[a-zA-Z]*$/.test(str);
     
-    
+  const url = "/api/Input";
+  const config = {"Content-Type": 'application/json'};
+
+
+  useEffect (() =>{
+    // get api Implement
+    //const url = "http://localhost:5000/api/Input"
+    fetch(url).then (response => response. json ()) . then (json => {
+    console.log("jsonnnn", json)
+    }).catch(e => {
+    console.log("e", e)
+  })
+},[])
 
   function changeButton(){
     const UpperProtein = protein.toUpperCase();
@@ -37,23 +46,52 @@ export default function Search(){
   };
   
   
-   const confirm = async (event) => {
+   const Perform = async (event) => {
+    //새로고침 막음
     // 확인 후 다음 페이지
     event.preventDefault();
     setProteinName(protein);
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
+    let data = {
+      'proteinName' : protein
+  };
 
-=======
->>>>>>> f18f8f95587abae747ac7748abed4e21a12d88da
->>>>>>> c51d062e (새로 커밋)
+  fetch(url,{
+    method:'POST',
+    headers:{
+            'Content-Type' : 'application/json'
+          },
+          body: JSON.stringify(data)
+        })
+        .then(response => {
+          console.log("response", data)
+          if(response.state == 200){
+            console.log("포스트 성공")
+          }
+        }).catch(e => {
+          console.log("포스트 실패")
+        })
+  
+   
+    //  try {
+    //   const response = await fetch('http://localhost:5000/api/Input',{
+    //     method: 'POST',
+    //     headers:{
+    //       'Content-Type' : 'application/json',
+    //       'Access-Control-Allow-Origin': '*'
+    //     },
+    //     body: JSON.stringify(data)
+    //   });
+
+    //   const result = await response.json();
+    // console.log('result is: ', JSON.stringify(result, null, 4));
+
+    //  } catch(e) {
+    //   console.log("포스트 실패");
+    //  }
     
 
-    //window.location.href = "/proteinInput";
 
-    // const result = await axios.get('http://127.0.0.1:5000/api/Input');
-    // this.recordCount = result.headers["x-totalrecordcount"];
+    window.location.href = "/proteinInput";
 
     // axios.get('http://127.0.0.1:5000/api/Input',
     //   {params: { "proteinName" : protein }
@@ -64,69 +102,31 @@ export default function Search(){
     //  })
 
 
+    //  axios.post('http://localhost:5000/api/Input',{
+    //   proteinName: protein
+    //  }).then(function(response){
+    //   console.log("포스트 완료");
+    //  }).catch(function (error){
+    //   console.log("포스트 안됨");
+    //  })
+    // axios.post(url, data, config)
+    // .then(res => {
+    //   console.log("포스트 완료");
+    // } ).catch(err => {
+    //   console.log("포스트 안됨");
+    // });
+    
      
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-         await axios.post('/api/Input',{//input 을 서버에 전달하는 코드
-          proteinName: protein
-        }).then(function(response){
-          console.log("포스트 완료");
-
-=======
->>>>>>> c51d062e (새로 커밋)
-         await axios.post('/api/Input',{
-          proteinName: protein
-        }).then(function(response){
-          console.log("포스트 완료");
-<<<<<<< HEAD
-=======
->>>>>>> f18f8f95587abae747ac7748abed4e21a12d88da
->>>>>>> c51d062e (새로 커밋)
-        }).catch(function (error){
-          console.log(error);
-        })
      
-<<<<<<< HEAD
-         fetch("/api/Input", {
-=======
-<<<<<<< HEAD
-         fetch("/api/Input", {//output 받는 코드
-=======
-         fetch("/api/Input", {
->>>>>>> f18f8f95587abae747ac7748abed4e21a12d88da
->>>>>>> c51d062e (새로 커밋)
-          method : "POST",
-          headers : {
-            "Content-Type" : "application/json; charset=utf-8"
-          }
-        }).then(res=> {
-          console.log(res+"res 데이터 그대로")
-          let hand = JSON.stringify(res);
-          console.log( hand + "얍1");
-          //json 파싱전 , 상태 코드 확인 해서 res 값 초기화
-        }).then(res=> {
-          let hand = JSON.stringify(res);
-          console.log( hand + "얍2");
-          console.log(res + "얍3");
-          setId(res);
-          //res 값에 따른 결과 처리
-          if(res == null){
-            console.log("가공 데이터 가져오기 실패");
-          }
-        })
-
-        window.location.href = "/proteinInput";
     
     //console.log(protein);
 
     
     //api post
       
-    localStorage.setItem('proteinName', protein);
+    localStorage.setItem("proteinName", protein);
     //localstorage 업로드
   };
-  
 
   return (
     <div className="page">
@@ -151,7 +151,7 @@ export default function Search(){
       <div>
         <button 
         disabled={button} 
-        onClick={confirm} 
+        onClick={Perform} 
         className="bottomButton">
           확인
         </button>
