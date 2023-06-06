@@ -49,19 +49,5 @@ def join_post():
 
   
 if __name__ == "__main__":
-<<<<<<< HEAD
-
-    app.run(host='0.0.0.0', port=5000, debug=False)
-
-
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
     app.run(debug=False)
-=======
-    app.run(host='0.0.0.0', port=5000, debug=False)
->>>>>>> f18f8f95587abae747ac7748abed4e21a12d88da
-=======
-    app.run(host='0.0.0.0', port=5000, debug=False)
->>>>>>> f18f8f95587abae747ac7748abed4e21a12d88da
->>>>>>> c51d062e (새로 커밋)
+

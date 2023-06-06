@@ -16,6 +16,7 @@ export default function Search(){
     
   const url = "/api/Input";
   const config = {"Content-Type": 'application/json'};
+  
 
 
   useEffect (() =>{
@@ -41,6 +42,7 @@ export default function Search(){
   const handleInput = (event) => {
     event.preventDefault();
     setProtein(event.target.value); //변수 저장 완료
+    
     // const UpperProtein = protein.toUpperCase();
     // UpperProtein.includes('G' ||'A'||'V'||'L'||'I'||'S'||'T'||'C'||'M'||'D'||'E'||'N'||'Q'||'K'||'R'||'F'||'Y'||'W'||'H'||'P'||'U') ? setButton(false) : setButton(true)
   };
@@ -52,8 +54,11 @@ export default function Search(){
     event.preventDefault();
     setProteinName(protein);
     let data = {
-      'proteinName' : protein
+      'proteinName' : proteinName
   };
+  const [yep, setYep] = useState("");
+  setYep("얍");
+   
 
   fetch(url,{
     method:'POST',
@@ -72,22 +77,22 @@ export default function Search(){
         })
   
    
-    //  try {
-    //   const response = await fetch('http://localhost:5000/api/Input',{
-    //     method: 'POST',
-    //     headers:{
-    //       'Content-Type' : 'application/json',
-    //       'Access-Control-Allow-Origin': '*'
-    //     },
-    //     body: JSON.stringify(data)
-    //   });
+     try {
+      const response = await fetch('http://localhost:5000/api/Input',{
+        method: 'POST',
+        headers:{
+          'Content-Type' : 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        },
+        body: JSON.stringify(data)
+      });
 
-    //   const result = await response.json();
-    // console.log('result is: ', JSON.stringify(result, null, 4));
+      const result = await response.json();
+    console.log('result is: ', JSON.stringify(result, null, 4));
 
-    //  } catch(e) {
-    //   console.log("포스트 실패");
-    //  }
+     } catch(e) {
+      console.log("가져오기 실패");
+     }
     
 
 
@@ -102,13 +107,7 @@ export default function Search(){
     //  })
 
 
-    //  axios.post('http://localhost:5000/api/Input',{
-    //   proteinName: protein
-    //  }).then(function(response){
-    //   console.log("포스트 완료");
-    //  }).catch(function (error){
-    //   console.log("포스트 안됨");
-    //  })
+    
     // axios.post(url, data, config)
     // .then(res => {
     //   console.log("포스트 완료");
@@ -124,7 +123,7 @@ export default function Search(){
     
     //api post
       
-    localStorage.setItem("proteinName", protein);
+    localStorage.setItem("얍이름", yep);
     //localstorage 업로드
   };
 

@@ -11,6 +11,7 @@ export default function AFoutput()  {
   script.src = "https://3Dmol.org/build/3Dmol-min.js";
   script.async = true;
   document.body.appendChild(script);
+  const [localTest, setLocalTest] = useState("");
   useEffect(() => {
     // fetch("/api/Input")
     //     .then(res=> res.json())
@@ -26,6 +27,9 @@ export default function AFoutput()  {
     // setProtein_input(localStorage.getItem('proteinName'));
     // console.log(Protein_input);
   },[]);
+  setLocalTest(localStorage.getItem('test'));
+  console.log(localTest);
+
 
 
   // 시각화
