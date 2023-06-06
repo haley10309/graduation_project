@@ -3,70 +3,76 @@ import axios from "axios";
 import { useState } from "react";
 
 export default function AlphaFold(){
-    const [protein, setProtein] = useState(""); //입력 값 변수 [입력값, 입력값 변경]
-  const [proteinName, setProteinName] = useState(""); // 저장 후 변수
+  const [protein, setProtein] = useState(""); //입력 값 변수 [입력값, 입력값 변경]
+  const [proteinName, setProteinName] = useState("") // 저장 후 변수
+  const [pdb_predict, setPDBPredict] = useState(null) // response 변수
 
   const [button, setButton] = useState(true);
   const isAlpha = str => /^[a-zA-Z]*$/.test(str);
     
     
 
-  function changeButton(){
-    const UpperProtein = protein.toUpperCase();
-   
-   // UpperProtein.includes('G'||'A'||'V'||'L'||'I'||'S'||'T'||'C'||'M'||'D'||'E'||'N'||'Q'||'K'||'R'||'F'||'Y'||'W'||'H'||'P'||'U') ? setButton(false) : setButton(true)
-    // UpperProtein.includes('G'||'A'||'V'||'L'||'I'||'S'||'T'||'C'||'M'||'D'||'E'||'N'||'Q'||'K'||'R'||'F'||'Y'||'W'||'H'||'P'||'U') ? setButton(false) : setButton(true)
-    (UpperProtein.includes("B") || UpperProtein.includes("J") || UpperProtein.includes("O") || UpperProtein.includes("X") || UpperProtein.includes("Z") || UpperProtein.includes(" ") || (!isAlpha(UpperProtein))) ? setButton(true) : setButton(false)
+ // 알맞은 시퀀스 입력시 Button 켜짐
+ function changeButton(){
+  const UpperProtein = protein.toUpperCase();
+ 
+ // UpperProtein.includes('G'||'A'||'V'||'L'||'I'||'S'||'T'||'C'||'M'||'D'||'E'||'N'||'Q'||'K'||'R'||'F'||'Y'||'W'||'H'||'P'||'U') ? setButton(false) : setButton(true)
+  // UpperProtein.includes('G'||'A'||'V'||'L'||'I'||'S'||'T'||'C'||'M'||'D'||'E'||'N'||'Q'||'K'||'R'||'F'||'Y'||'W'||'H'||'P'||'U') ? setButton(false) : setButton(true)
+  (UpperProtein.includes("B") || UpperProtein.includes("J") || UpperProtein.includes("O") || UpperProtein.includes("X") || UpperProtein.includes("Z") || UpperProtein.includes(" ") || (!isAlpha(UpperProtein))) ? setButton(true) : setButton(false)
 
-   }
+}
 
-
-  const handleInput = (event) => {
-    event.preventDefault();
-    setProtein(event.target.value); //변수 저장 완료
-    // const UpperProtein = protein.toUpperCase();
-    // UpperProtein.includes('G' ||'A'||'V'||'L'||'I'||'S'||'T'||'C'||'M'||'D'||'E'||'N'||'Q'||'K'||'R'||'F'||'Y'||'W'||'H'||'P'||'U') ? setButton(false) : setButton(true)
+// 입력된 변수 저장
+const handleInput = (event) => {
+  event.preventDefault();
+  setProtein(event.target.value); //변수 저장 완료
+  // const UpperProtein = protein.toUpperCase();
+  // UpperProtein.includes('G' ||'A'||'V'||'L'||'I'||'S'||'T'||'C'||'M'||'D'||'E'||'N'||'Q'||'K'||'R'||'F'||'Y'||'W'||'H'||'P'||'U') ? setButton(false) : setButton(true)
+};
+  
+  
+// prediction request
+const post = (seq) => {
+  //Promise로 fetch를 감싼다
+  return new Promise((resolve, reject) => {
+    fetch("/konfold/alphafold2", {
+            method : "POST",  //메소드 지정
+            headers : {       //데이터 타입 지정
+                "Content-Type":"application/json; charset=utf-8"
+            },
+            body: JSON.stringify({proteinName:seq}) //데이터 JSON문자열화 후 body에 저장
+        })
+        .then(res=>{  //리턴값이 있으면 리턴값에 맞는 req지정
+            console.log("fetchtest1:",res)
+            const blob = res.blob();
+            return blob
+        })
+        .then(blob=> { //리턴값에 대한 처리
+            console.log("fetchtest2:",blob);
+            //res 값에 따른 결과 처리       
+            if(blob == null){
+              console.log("데이터 가져오기 실패");
+            }
+            resolve(URL.createObjectURL(blob));
+            //localStorage.setItem('pdb_protein', res);
+            //console.log(pdb_predict);
+        });
+    });
   };
-  
-  
-   const confirm = async (event) => {
+
+  // button 클릭
+  const confirm = async (event) => {
     // 확인 후 다음 페이지
     event.preventDefault();
+    // 확인 된 input저장
     setProteinName(protein);
-    
 
-    //window.location.href = "/proteinInput";
+    // output저장
+    setPDBPredict(await post(proteinName));
+    console.log("result_test:", pdb_predict);
 
-    // const result = await axios.get('http://127.0.0.1:5000/api/Input');
-    // this.recordCount = result.headers["x-totalrecordcount"];
-
-    // axios.get('http://127.0.0.1:5000/api/Input',
-    //   {params: { "proteinName" : protein }
-    // }).then(function (response) {
-    //   console.log(protein);
-    //  }).catch(function (error){
-    //   console.log(error);
-    //  })
-
-
-    //  axios.post('/api/Input',{
-    //   proteinName: protein
-    //  }).then(function(response){
-    //   console.log("포스트 완료");
-    //  }).catch(function (error){
-    //   console.log(error);
-    //  })
-
-     
-     
-    
-    //console.log(protein);
-
-    
-    //api post
-      
-    localStorage.setItem("proteinName", protein);
-    //localstorage 업로드
+    // 시각화 창
+    //window.location.href = "/AlphaOutput";
   };
 
   return (

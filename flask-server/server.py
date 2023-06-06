@@ -4,7 +4,7 @@ from http import HTTPStatus
 from flask import jsonify
 from pypdb import *
 from IPython.display import HTML
-from react.render import render_component
+#from react.render import render_component
 
 # from flask_cors import CORS
 
@@ -30,9 +30,9 @@ def join_post():
         print(protId)
                 
         # return {"proteinId": tmp}
-        return (protId)
+        # return (justify(protId))
         # rendered = render_component('konfold_front/src/AFoutput.jsx',)
-        # return Response(json.dumps(protId, ensure_ascii=False).encode('utf8'), content_type='application/json; charset=utf-8')
+        return Response(json.dumps(protId, ensure_ascii=False).encode('utf8'), content_type='application/json; charset=utf-8')
     
                     
     except Exception as e:              
@@ -49,5 +49,9 @@ def join_post():
 
   
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run(port=5000, debug=False)
+
+    #app.run(host='0.0.0.0', port=5000, debug=False)
+
+ 
 

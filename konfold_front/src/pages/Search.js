@@ -5,11 +5,12 @@ import { useEffect } from "react";
 import { useState } from "react";
 
 
-
 export default function Search(){
-    
+  
+  
   const [protein, setProtein] = useState(""); //입력 값 변수 [입력값, 입력값 변경]
-  const [proteinName, setProteinName] = useState(""); // 저장 후 변수
+  const [proteinSearchID, setProteinSearchID] = useState("") // 저장 후 변수
+  
 
   const [button, setButton] = useState(true);
   const isAlpha = str => /^[a-zA-Z]*$/.test(str);
@@ -19,15 +20,6 @@ export default function Search(){
   
 
 
-  useEffect (() =>{
-    // get api Implement
-    //const url = "http://localhost:5000/api/Input"
-    fetch(url).then (response => response. json ()) . then (json => {
-    console.log("jsonnnn", json)
-    }).catch(e => {
-    console.log("e", e)
-  })
-},[])
 
   function changeButton(){
     const UpperProtein = protein.toUpperCase();
@@ -48,6 +40,7 @@ export default function Search(){
   };
   
   
+<<<<<<< HEAD
    const Perform = async (event) => {
     //새로고침 막음
     // 확인 후 다음 페이지
@@ -94,19 +87,13 @@ export default function Search(){
       console.log("가져오기 실패");
      }
     
+=======
+>>>>>>> f3bad72c5c76049bb1b34b84bfc1aca8830b11e2
 
 
-    window.location.href = "/proteinInput";
-
-    // axios.get('http://127.0.0.1:5000/api/Input',
-    //   {params: { "proteinName" : protein }
-    // }).then(function (response) {
-    //   console.log(protein);
-    //  }).catch(function (error){
-    //   console.log(error);
-    //  })
 
 
+<<<<<<< HEAD
     
     // axios.post(url, data, config)
     // .then(res => {
@@ -125,7 +112,69 @@ export default function Search(){
       
     localStorage.setItem("얍이름", yep);
     //localstorage 업로드
+=======
+
+    
+    //api post
+
+    // prediction request
+const post = (seq) => {
+  //Promise로 fetch를 감싼다
+  return new Promise((resolve, reject) => {
+    fetch("/api/Input", {
+            method : "POST",  //메소드 지정
+            headers : {       //데이터 타입 지정
+                "Content-Type":"application/json; charset=utf-8"
+            },
+            body: JSON.stringify({proteinName:seq}) //데이터 JSON문자열화 후 body에 저장
+        })
+        .then(res=>{  //리턴값이 있으면 리턴값에 맞는 req지정
+            console.log("search_fetch_check:",res)
+            return res.json();
+        })
+        .then(res=> { //리턴값에 대한 처리
+            console.log("server_return_fetch:",res);
+            //res 값에 따른 결과 처리       
+            if(res == null){
+              console.log("데이터 가져오기 실패");
+            }
+            setProteinSearchID(res);
+            resolve(res);
+           
+            // localStorage.setItem('pdb_protein', res);
+            //console.log(pdb_predict);
+        });
+    });
+>>>>>>> f3bad72c5c76049bb1b34b84bfc1aca8830b11e2
   };
+
+  // button 클릭
+  const confirm = async (event) => {
+    // 확인 후 다음 페이지
+    event.preventDefault();
+    // output저장
+   await post(protein);
+   console.log("proteinSearchID_test: ", proteinSearchID);
+   console.log("proteinSeq_test: ", protein);
+
+   localStorage.setItem("proteinId", proteinSearchID['proteinId']);
+   localStorage.setItem("proteinSeq", protein);
+   window.location.href = "/proteinInput";
+
+   
+
+  };
+  
+
+
+
+
+
+
+      
+    // localStorage.setItem("searchProteinId", protein);
+    //localstorage 업로드
+  
 
   return (
     <div className="page">
@@ -150,7 +199,7 @@ export default function Search(){
       <div>
         <button 
         disabled={button} 
-        onClick={Perform} 
+        onClick={confirm} 
         className="bottomButton">
           확인
         </button>
