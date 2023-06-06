@@ -30,9 +30,9 @@ def join_post():
         print(protId)
                 
         # return {"proteinId": tmp}
-        return (protId)
+        # return (justify(protId))
         # rendered = render_component('konfold_front/src/AFoutput.jsx',)
-        # return Response(json.dumps(protId, ensure_ascii=False).encode('utf8'), content_type='application/json; charset=utf-8')
+        return Response(json.dumps(protId, ensure_ascii=False).encode('utf8'), content_type='application/json; charset=utf-8')
     
                     
     except Exception as e:              
@@ -49,19 +49,9 @@ def join_post():
 
   
 if __name__ == "__main__":
-<<<<<<< HEAD
+    app.run(port=5000, debug=False)
 
-    app.run(host='0.0.0.0', port=5000, debug=False)
+    #app.run(host='0.0.0.0', port=5000, debug=False)
 
+ 
 
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-    app.run(debug=False)
-=======
-    app.run(host='0.0.0.0', port=5000, debug=False)
->>>>>>> f18f8f95587abae747ac7748abed4e21a12d88da
-=======
-    app.run(host='0.0.0.0', port=5000, debug=False)
->>>>>>> f18f8f95587abae747ac7748abed4e21a12d88da
->>>>>>> c51d062e (새로 커밋)
