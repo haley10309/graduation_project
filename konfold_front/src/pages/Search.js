@@ -3,6 +3,7 @@ import axios from 'axios'  ;
 import { Link } from "react-router-dom"; 
 import { useEffect } from "react";
 import { useState } from "react";
+import ClipLoader from "react-spinners/ClipLoader";
 
 
 export default function Search(){
@@ -17,9 +18,11 @@ export default function Search(){
     
   const url = "/api/Input";
   const config = {"Content-Type": 'application/json'};
+
+  const [loading, setLoading] = useState(false);
+
+  //로딩 화면
   
-
-
 
   function changeButton(){
     const UpperProtein = protein.toUpperCase();
@@ -34,85 +37,15 @@ export default function Search(){
   const handleInput = (event) => {
     event.preventDefault();
     setProtein(event.target.value); //변수 저장 완료
-    
     // const UpperProtein = protein.toUpperCase();
     // UpperProtein.includes('G' ||'A'||'V'||'L'||'I'||'S'||'T'||'C'||'M'||'D'||'E'||'N'||'Q'||'K'||'R'||'F'||'Y'||'W'||'H'||'P'||'U') ? setButton(false) : setButton(true)
   };
   
   
-<<<<<<< HEAD
-   const Perform = async (event) => {
-    //새로고침 막음
-    // 확인 후 다음 페이지
-    event.preventDefault();
-    setProteinName(protein);
-    let data = {
-      'proteinName' : proteinName
-  };
-  const [yep, setYep] = useState("");
-  setYep("얍");
-   
-
-  fetch(url,{
-    method:'POST',
-    headers:{
-            'Content-Type' : 'application/json'
-          },
-          body: JSON.stringify(data)
-        })
-        .then(response => {
-          console.log("response", data)
-          if(response.state == 200){
-            console.log("포스트 성공")
-          }
-        }).catch(e => {
-          console.log("포스트 실패")
-        })
-  
-   
-     try {
-      const response = await fetch('http://localhost:5000/api/Input',{
-        method: 'POST',
-        headers:{
-          'Content-Type' : 'application/json',
-          'Access-Control-Allow-Origin': '*'
-        },
-        body: JSON.stringify(data)
-      });
-
-      const result = await response.json();
-    console.log('result is: ', JSON.stringify(result, null, 4));
-
-     } catch(e) {
-      console.log("가져오기 실패");
-     }
-    
-=======
->>>>>>> f3bad72c5c76049bb1b34b84bfc1aca8830b11e2
 
 
 
 
-<<<<<<< HEAD
-    
-    // axios.post(url, data, config)
-    // .then(res => {
-    //   console.log("포스트 완료");
-    // } ).catch(err => {
-    //   console.log("포스트 안됨");
-    // });
-    
-     
-     
-    
-    //console.log(protein);
-
-    
-    //api post
-      
-    localStorage.setItem("얍이름", yep);
-    //localstorage 업로드
-=======
 
     
     //api post
@@ -121,6 +54,8 @@ export default function Search(){
 const post = (seq) => {
   //Promise로 fetch를 감싼다
   return new Promise((resolve, reject) => {
+    
+    
     fetch("/api/Input", {
             method : "POST",  //메소드 지정
             headers : {       //데이터 타입 지정
@@ -145,25 +80,29 @@ const post = (seq) => {
             //console.log(pdb_predict);
         });
     });
->>>>>>> f3bad72c5c76049bb1b34b84bfc1aca8830b11e2
   };
 
   // button 클릭
   const confirm = async (event) => {
-    // 확인 후 다음 페이지
     event.preventDefault();
-    // output저장
-   await post(protein);
-   console.log("proteinSearchID_test: ", proteinSearchID);
-   console.log("proteinSeq_test: ", protein);
-
-   localStorage.setItem("proteinId", proteinSearchID['proteinId']);
-   localStorage.setItem("proteinSeq", protein);
-   window.location.href = "/proteinInput";
-
-   
-
+    
+    setLoading(true);
+    
+    try {
+      const searchResult = await post(protein);
+      
+      console.log("proteinSearchID_test:", searchResult);
+      localStorage.setItem("proteinId", searchResult['proteinId']);
+      localStorage.setItem("proteinSeq", protein);
+      
+      setLoading(false);
+      window.location.href = "/proteinInput";
+    } catch (error) {
+      console.log("데이터 가져오기 실패:", error);
+      setLoading(false);
+    }
   };
+  
   
 
 
@@ -203,6 +142,7 @@ const post = (seq) => {
         className="bottomButton">
           확인
         </button>
+        
       </div>
       <div className="inputTitle"> 
         단백질 3D 구조 시각화 화면입니다
