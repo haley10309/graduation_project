@@ -82,8 +82,8 @@ const post = (seq) => {
     event.preventDefault();
     // output저장
    await post(protein);
-   console.log("proteinSearchID_test:", proteinSearchID);
-   console.log("proteinSeq_test:", protein);
+   console.log("proteinSearchID_test: ", proteinSearchID);
+   console.log("proteinSeq_test: ", protein);
 
    localStorage.setItem("proteinId", proteinSearchID['proteinId']);
    localStorage.setItem("proteinSeq", protein);
