@@ -17,7 +17,11 @@ export default function AlphaFold(){
   const UpperProtein = protein.toUpperCase();
  
  // UpperProtein.includes('G'||'A'||'V'||'L'||'I'||'S'||'T'||'C'||'M'||'D'||'E'||'N'||'Q'||'K'||'R'||'F'||'Y'||'W'||'H'||'P'||'U') ? setButton(false) : setButton(true)
+<<<<<<< HEAD
  // UpperProtein.includes('G'||'A'||'V'||'L'||'I'||'S'||'T'||'C'||'M'||'D'||'E'||'N'||'Q'||'K'||'R'||'F'||'Y'||'W'||'H'||'P'||'U') ? setButton(false) : setButton(true)
+=======
+  // UpperProtein.includes('G'||'A'||'V'||'L'||'I'||'S'||'T'||'C'||'M'||'D'||'E'||'N'||'Q'||'K'||'R'||'F'||'Y'||'W'||'H'||'P'||'U') ? setButton(false) : setButton(true)
+>>>>>>> origin/main
   (UpperProtein.includes("B") || UpperProtein.includes("J") || UpperProtein.includes("O") || UpperProtein.includes("X") || UpperProtein.includes("Z") || UpperProtein.includes(" ") || (!isAlpha(UpperProtein))) ? setButton(true) : setButton(false)
 
 }
@@ -69,8 +73,12 @@ const post = (seq) => {
 
     // output저장
     setPDBPredict(await post(proteinName));
+<<<<<<< HEAD
     // result = pdb_predict;
     // console.log("result_test:", result);
+=======
+    console.log("result_test:", pdb_predict);
+>>>>>>> origin/main
 
     // 시각화 창
     //window.location.href = "/AlphaOutput";
