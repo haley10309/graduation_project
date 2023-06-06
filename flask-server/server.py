@@ -4,7 +4,7 @@ from http import HTTPStatus
 from flask import jsonify
 from pypdb import *
 from IPython.display import HTML
-from react.render import render_component
+#from react.render import render_component
 
 # from flask_cors import CORS
 
