@@ -27,7 +27,7 @@ export default function About() {
     <div className="prediction_page">
       <h1 className="refer-title">
       프로젝트 개발자</h1>
-      <img className="AboutImg" alt="role" src="/img/role.png" />
+      <img className="AboutImg" alt="role" src="/img/project_role.png" />
       <h1 className="people_date">
       - 1년 간 기록 </h1>
       <Wrap>

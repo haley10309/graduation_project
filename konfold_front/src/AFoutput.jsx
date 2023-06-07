@@ -20,6 +20,7 @@ export default function AFoutput() {
   useEffect(() => {
     const fetchData = async () => {
       const proteinId = getDataLocalStorage("proteinId");
+      setProtein_input(getDataLocalStorage("proteinSeq"))
       console.log(proteinId);
       setPtid(proteinId);
       setLoading(false);
@@ -49,7 +50,7 @@ export default function AFoutput() {
     <div className="page">
       <div className="container">
         <div id="id" className="mol-container"></div>
-        <h1 className="korean-protein-expaination"></h1>
+        <h1 className="korean-protein-expaination">{Protein_input}</h1>
         <button>Download File</button>
       </div>
     </div>
