@@ -7,161 +7,155 @@ import ClipLoader from "react-spinners/ClipLoader";
 import ClimbingBoxLoader from 'react-spinners/ClimbingBoxLoader';
 
 
-export default function Search(){
-  
-  
-  const [protein, setProtein] = useState(""); //입력 값 변수 [입력값, 입력값 변경]
-  const [proteinSearchID, setProteinSearchID] = useState("") // 저장 후 변수
-  
 
+
+export default function Search() {
+  const [protein, setProtein] = useState("");
+  const [proteinSearchID, setProteinSearchID] = useState("");
   const [button, setButton] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [isChecked1, setIsChecked1] = useState(false);
+  const [isChecked2, setIsChecked2] = useState(false);
+
   const isAlpha = str => /^[a-zA-Z]*$/.test(str);
-    
-  const url = "/api/Input";
-  const config = {"Content-Type": 'application/json'};
 
-  const [loading, setLoading] = useState(false); //로딩할지 말지에 대한 부울 변수
-
- 
-  
-
-  function changeButton(){
-    const UpperProtein = protein.toUpperCase();
-   
-   // UpperProtein.includes('G'||'A'||'V'||'L'||'I'||'S'||'T'||'C'||'M'||'D'||'E'||'N'||'Q'||'K'||'R'||'F'||'Y'||'W'||'H'||'P'||'U') ? setButton(false) : setButton(true)
-    // UpperProtein.includes('G'||'A'||'V'||'L'||'I'||'S'||'T'||'C'||'M'||'D'||'E'||'N'||'Q'||'K'||'R'||'F'||'Y'||'W'||'H'||'P'||'U') ? setButton(false) : setButton(true)
-    (UpperProtein.includes("B") || UpperProtein.includes("J") || UpperProtein.includes("O") || UpperProtein.includes("X") || UpperProtein.includes("Z") || UpperProtein.includes(" ") || (!isAlpha(UpperProtein))) ? setButton(true) : setButton(false)
-
-   }
-
+  const changeButton = () => {
+    const upperProtein = protein.toUpperCase();
+    (upperProtein.includes("B") || upperProtein.includes("J") || upperProtein.includes("O") || upperProtein.includes("X") || upperProtein.includes("Z") || upperProtein.includes(" ") || (!isAlpha(upperProtein))) ? setButton(true) : setButton(false)
+  };
+  const changeButtonFalse = () => {
+    setButton(false);
+  }
 
   const handleInput = (event) => {
     event.preventDefault();
-    setProtein(event.target.value); //변수 저장 완료
-    // const UpperProtein = protein.toUpperCase();
-    // UpperProtein.includes('G' ||'A'||'V'||'L'||'I'||'S'||'T'||'C'||'M'||'D'||'E'||'N'||'Q'||'K'||'R'||'F'||'Y'||'W'||'H'||'P'||'U') ? setButton(false) : setButton(true)
+    setProtein(event.target.value);
   };
-  
-  
 
+  const handleCheckbox1Change = () => {
+    setIsChecked1(!isChecked1);
+    if(!isChecked1){
+      if((!isChecked2)){
+        setProtein("");
+        changeButtonFalse();
+      }
+      setProtein("VLSPADKTNVKAAWGKVGAHAGEYGAEALERMFLSFPTTKTYFPHFDLSHGSAQVKGHGKKVADALTAVAHVDDMPNAL ");
+      changeButton();
+    } else {
+      setProtein("");
+    }
+  };
+  const handleCheckbox2Change = () => {
+    setIsChecked2(!isChecked2);
+    if(!isChecked2){
+      if((!isChecked1)){
+        setProtein("");
+        changeButtonFalse();
+      }
+      setProtein("RVVPSGDVVRFPNITNLCPFGEVFNATKFPSVYAWERKKISNCVADYSVLYNSTFFSTFKCYGVSATKLNDLCFSNVYADSFVVKGDDVRQIAPGQTGVIADYNYKLPDDFMGCVLAWNTRNIDATSTGNHNYKYRYLRHGKLRPFERDISNVPFSPDGKPCTPPALNCYWPLNDYGFYTTTGIGYQPYRVVVLSFELLNAPATVCGPKLSTDLIKNQCVNFSGHHHHHH ");
+      changeButton();
+    } else {
+      setProtein("");
+    }
+  };
 
-
-
-
-    
-    //api post
-
-    // prediction request
-const post = (seq) => { //seq = 사용자 input 값
-  //Promise로 fetch를 감싼다
-  return new Promise((resolve, reject) => {
-    
-    
-    fetch("/api/Input", {
-            method : "POST",  //메소드 지정
-            headers : {       //데이터 타입 지정
-                "Content-Type":"application/json; charset=utf-8"
-            },
-            body: JSON.stringify({proteinName:seq}) //데이터 JSON문자열화 후 body에 저장
+  const post = (seq) => {
+    return new Promise((resolve, reject) => {
+      fetch("/api/Input", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        body: JSON.stringify({ proteinName: seq })
+      })
+        .then(res => {
+          return res.json();
         })
-        .then(res=>{  //리턴값이 있으면 리턴값에 맞는 req지정
-            console.log("search_fetch_check:",res)
-            return res.json();
-        })
-        .then(res=> { //리턴값에 대한 처리
-            console.log("server_return_fetch:",res);
-            //res 값에 따른 결과 처리       
-            if(res == null){
-              console.log("데이터 가져오기 실패");
-            }
-            setProteinSearchID(res); // 전혀 작동 x => 이제동안 안됐던 이유 
-            resolve(res); //promise 에서 사용하는 resolve를 사용해야만 return 가능
-            console.log("proteinSearchID: ", proteinSearchID);
-            
+        .then(res => {
+          if (res == null) {
+            console.log("데이터 가져오기 실패");
+          }
+          setProteinSearchID(res);
+          resolve(res);
         });
     });
   };
 
-  // button 클릭
   const confirm = async (event) => {
     event.preventDefault();
-    
     setLoading(true);
-    
+
     try {
       const searchResult = await post(protein);
-      
-      console.log("proteinSearchID_test:", searchResult);
       localStorage.setItem("proteinId", searchResult['proteinId']);
       localStorage.setItem("proteinSeq", protein);
       setTimeout(() => {
         setLoading(false);
         window.location.href = "/proteinInput";
-      },100)
-     
+      }, 100);
     } catch (error) {
       console.log("데이터 가져오기 실패:", error);
       setLoading(false);
     }
   };
-  
-  
-
-
-
-  // {
-  //   loading? 
-
-  //   <ClipLoader
-  //   size = {30}
-  //   color={"#123abc"}
-  //   loading= {loading}
-  //   />
-  //   :
-    // localStorage.setItem("searchProteinId", protein);
-    //localstorage 업로드
-  
 
   return (
     <div className="loading_page">
-      {
-        loading? 
+      {loading ?
         <ClimbingBoxLoader className="loading_page"
-          size = {30}
+          size={30}
           color={"#123abc"}
-          loading= {loading}
-          />
+          loading={loading}
+        />
         :
         <div className="inside_page">
-        <div className="titleprotein">단백질 시퀀스를 입력해 주세요</div>
-        <div className="contentWrap">
-          <div className="inputTitle">단백질 시퀀스</div>
-          <div className="inputWrap">
+          <div className="titleprotein">단백질 시퀀스를 입력해 주세요</div>
+          <div className="contentWrap">
+            <div className="inputTitle">단백질 시퀀스</div>
+            <div className="inputWrap">
+              <input
+                className="input"
+                value={protein}
+                onChange={handleInput}
+                onKeyUp={changeButton}
+              />
+            </div>
+            
+          </div>
+          <div>
+            <label htmlFor="checkbox">알파-1 글로빈 체인의 일부 서열 </label>
             <input
-              className="input"
-              value={protein} //input으로 받은 프로틴 시퀀스
-              onChange={handleInput}
-              onKeyUp={changeButton} />
-          </div> {/* input wrap 끝*/}
-          <div className="errorMessageWrap">올바른 시퀀스를 입력해 주세요</div>
-          </div> {/* content wrap 끝*/}
-          <div> {/* 버튼 wrap*/}
-          <button 
-          disabled={button} 
-          onClick={confirm} 
-          className="bottomButton">
-            확인
-          </button>
-          </div>{/* 버튼 wrap 끝*/}
-        <div className="inputTitle"> 
-          단백질 3D 구조 시각화 화면입니다
-        </div>
-        </div> /* inside_page wrap 끝*/
+              id="checkbox"
+              type="checkbox"
+              checked={isChecked1}
+              onChange={handleCheckbox1Change}
+            />
+          </div>
 
+          <div>
+            <label htmlFor="checkbox">SARS-CoV-2 단백질의 일부 서열</label>
+            <input
+              id="checkbox"
+              type="checkbox"
+              checked={isChecked2}
+              onChange={handleCheckbox2Change}
+            />
+          </div>
+
+          <div>
+            <button
+              disabled={button}
+              onClick={confirm}
+              className="bottomButton"
+            >
+              확인
+            </button>
+          </div>
+          <div className="inputTitle">
+            단백질 3D 구조 시각화 화면입니다
+          </div>
+        </div>
       }
-      
-      </div>  //page 끝
-      
-      
+    </div>
   );
 }
