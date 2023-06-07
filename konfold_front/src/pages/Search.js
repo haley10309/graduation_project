@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
+import ClimbingBoxLoader from 'react-spinners/ClimbingBoxLoader';
 
 
 export default function Search(){
@@ -126,8 +127,8 @@ const post = (seq) => {
     <div className="page">
       {
         loading? 
-        <ClipLoader
-          size = {300}
+        <ClimbingBoxLoader
+          size = {30}
           color={"#123abc"}
           loading= {loading}
           />
