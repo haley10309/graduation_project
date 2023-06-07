@@ -162,6 +162,7 @@ export default function AlphaFold(){
             </div> {/* inputWrap 끝 */}
             <div className="errorMessageWrap">올바른 시퀀스를 입력해 주세요</div>
           </div>{/* contentWrap 끝 */}
+          <div className="inputTitle">예시 시퀀스</div>
           <div>
             <label htmlFor="checkbox">알파-1 글로빈 체인의 일부 서열 </label>
             <input

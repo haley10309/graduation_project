@@ -120,6 +120,7 @@ export default function Search() {
                 onKeyUp={changeButton}
               />
             </div>
+            <div className="inputTitle">예시 시퀀스</div>
             
           </div>
           <div>
@@ -131,6 +132,7 @@ export default function Search() {
               onChange={handleCheckbox1Change}
             />
           </div>
+          
 
           <div>
             <label htmlFor="checkbox">SARS-CoV-2 단백질의 일부 서열</label>
