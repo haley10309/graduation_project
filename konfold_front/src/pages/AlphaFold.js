@@ -4,6 +4,7 @@ import { useState } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 import ClimbingBoxLoader from 'react-spinners/ClimbingBoxLoader';
 
+
 export default function AlphaFold(){
   const [protein, setProtein] = useState(""); //입력 값 변수 [입력값, 입력값 변경]
   const [pdb_predict, setPDBPredict] = useState(null) // response 변수
@@ -13,6 +14,8 @@ export default function AlphaFold(){
   
   //로딩 화면  
   const [loading, setLoading] = useState(false);
+  const [isChecked1, setIsChecked1] = useState(false);
+  const [isChecked2, setIsChecked2] = useState(false);
 
  // 알맞은 시퀀스 입력시 Button 켜짐
   function changeButton(){
@@ -23,6 +26,9 @@ export default function AlphaFold(){
     (UpperProtein.includes("B") || UpperProtein.includes("J") || UpperProtein.includes("O") || UpperProtein.includes("X") || UpperProtein.includes("Z") || UpperProtein.includes(" ") || (!isAlpha(UpperProtein))) ? setButton(true) : setButton(false)
 
   }
+  const changeButtonFalse = () => {
+    setButton(false);
+  }
 
   // 입력된 변수 저장
   const handleInput = (event) => {
@@ -31,6 +37,32 @@ export default function AlphaFold(){
     // const UpperProtein = protein.toUpperCase();
     // UpperProtein.includes('G' ||'A'||'V'||'L'||'I'||'S'||'T'||'C'||'M'||'D'||'E'||'N'||'Q'||'K'||'R'||'F'||'Y'||'W'||'H'||'P'||'U') ? setButton(false) : setButton(true)
   };
+  const handleCheckbox1Change = () => {
+    setIsChecked1(!isChecked1);
+    if(!isChecked1){
+      if((!isChecked2)){
+        setProtein("");
+        changeButtonFalse();
+      }
+      setProtein("VLSPADKTNVKAAWGKVGAHAGEYGAEALERMFLSFPTTKTYFPHFDLSHGSAQVKGHGKKVADALTAVAHVDDMPNAL ");
+      changeButton();
+    } else {
+      setProtein("");
+    }
+  };
+  const handleCheckbox2Change = () => {
+    setIsChecked2(!isChecked2);
+    if(!isChecked2){
+      if((!isChecked1)){
+        setProtein("");
+        changeButtonFalse();
+      }
+      setProtein("RVVPSGDVVRFPNITNLCPFGEVFNATKFPSVYAWERKKISNCVADYSVLYNSTFFSTFKCYGVSATKLNDLCFSNVYADSFVVKGDDVRQIAPGQTGVIADYNYKLPDDFMGCVLAWNTRNIDATSTGNHNYKYRYLRHGKLRPFERDISNVPFSPDGKPCTPPALNCYWPLNDYGFYTTTGIGYQPYRVVVLSFELLNAPATVCGPKLSTDLIKNQCVNFSGHHHHHH ");
+      changeButton();
+    } else {
+      setProtein("");
+    }
+    };
   
   // prediction request
   const post = (seq) => {
@@ -130,6 +162,25 @@ export default function AlphaFold(){
             </div> {/* inputWrap 끝 */}
             <div className="errorMessageWrap">올바른 시퀀스를 입력해 주세요</div>
           </div>{/* contentWrap 끝 */}
+          <div>
+            <label htmlFor="checkbox">알파-1 글로빈 체인의 일부 서열 </label>
+            <input
+              id="checkbox"
+              type="checkbox"
+              checked={isChecked1}
+              onChange={handleCheckbox1Change}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="checkbox">SARS-CoV-2 단백질의 일부 서열</label>
+            <input
+              id="checkbox"
+              type="checkbox"
+              checked={isChecked2}
+              onChange={handleCheckbox2Change}
+            />
+          </div>
           <div>{/* button 시작 */}
             <button 
             disabled={button} 
