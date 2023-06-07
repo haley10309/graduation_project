@@ -21,7 +21,7 @@ export default function Search(){
 
   const [loading, setLoading] = useState(false);
 
-  //로딩 화면
+ 
   
 
   function changeButton(){
@@ -94,9 +94,11 @@ const post = (seq) => {
       console.log("proteinSearchID_test:", searchResult);
       localStorage.setItem("proteinId", searchResult['proteinId']);
       localStorage.setItem("proteinSeq", protein);
-      
-      setLoading(false);
-      window.location.href = "/proteinInput";
+      setTimeout(() => {
+        setLoading(false);
+        window.location.href = "/proteinInput";
+      },100)
+     
     } catch (error) {
       console.log("데이터 가져오기 실패:", error);
       setLoading(false);
@@ -107,46 +109,59 @@ const post = (seq) => {
 
 
 
+  // {
+  //   loading? 
 
-
-
-      
+  //   <ClipLoader
+  //   size = {30}
+  //   color={"#123abc"}
+  //   loading= {loading}
+  //   />
+  //   :
     // localStorage.setItem("searchProteinId", protein);
     //localstorage 업로드
   
 
   return (
     <div className="page">
-      <div className="titleprotein">단백질 시퀀스를 입력해 주세요</div>
-
-      <div className="contentWrap">
-        <div className="inputTitle">단백질 시퀀스</div>
-        <div className="inputWrap">
-          <input
-            className="input"
-            value={protein} //input으로 받은 프로틴 시퀀스
-            onChange={handleInput}
-            onKeyUp={changeButton}
-            
+      {
+        loading? 
+        <ClipLoader
+          size = {30}
+          color={"#123abc"}
+          loading= {loading}
           />
-
-          {/* place holder 넣어 보기 */}
+        :
+        <div className="inside_page">
+        <div className="titleprotein">단백질 시퀀스를 입력해 주세요</div>
+        <div className="contentWrap">
+          <div className="inputTitle">단백질 시퀀스</div>
+          <div className="inputWrap">
+            <input
+              className="input"
+              value={protein} //input으로 받은 프로틴 시퀀스
+              onChange={handleInput}
+              onKeyUp={changeButton} />
+          </div> {/* input wrap 끝*/}
+          <div className="errorMessageWrap">올바른 시퀀스를 입력해 주세요</div>
+          </div> {/* content wrap 끝*/}
+          <div> {/* 버튼 wrap*/}
+          <button 
+          disabled={button} 
+          onClick={confirm} 
+          className="bottomButton">
+            확인
+          </button>
+          </div>{/* 버튼 wrap 끝*/}
+        <div className="inputTitle"> 
+          단백질 3D 구조 시각화 화면입니다
         </div>
+        </div> /* inside_page wrap 끝*/
 
-        <div className="errorMessageWrap">올바른 시퀀스를 입력해 주세요</div>
-      </div>
-      <div>
-        <button 
-        disabled={button} 
-        onClick={confirm} 
-        className="bottomButton">
-          확인
-        </button>
-        
-      </div>
-      <div className="inputTitle"> 
-        단백질 3D 구조 시각화 화면입니다
-      </div>
-    </div>
+      }
+      
+      </div>  //page 끝
+      
+      
   );
 }
