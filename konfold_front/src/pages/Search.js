@@ -127,7 +127,7 @@ const post = (seq) => {
       {
         loading? 
         <ClipLoader
-          size = {30}
+          size = {300}
           color={"#123abc"}
           loading= {loading}
           />
