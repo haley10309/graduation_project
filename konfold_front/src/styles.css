@@ -206,3 +206,14 @@ body {
   text-align: left;
   white-space: nowrap;
 }
+.loading_page{
+  text-align: center;
+  
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  height: 100vh;
+  background-color: rgb(247, 247, 247);
+}

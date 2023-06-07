@@ -124,10 +124,10 @@ const post = (seq) => {
   
 
   return (
-    <div className="page">
+    <div className="loading_page">
       {
         loading? 
-        <ClimbingBoxLoader
+        <ClimbingBoxLoader className="loading_page"
           size = {30}
           color={"#123abc"}
           loading= {loading}
