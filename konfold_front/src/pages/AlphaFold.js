@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 import { useState } from "react";
+import ClipLoader from "react-spinners/ClipLoader";
+import ClimbingBoxLoader from 'react-spinners/ClimbingBoxLoader';
 
 export default function AlphaFold(){
   const [protein, setProtein] = useState(""); //입력 값 변수 [입력값, 입력값 변경]
@@ -89,11 +91,12 @@ export default function AlphaFold(){
         setPDBPredict(pdbdata)
       };
       reader.readAsText(predictResult);
-
-      setLoading(false);
-
-      // 시각화 창
-      window.location.href = "/AlphaOutput";
+      setTimeout(() => {
+        setLoading(false);
+        // 시각화 창
+        window.location.href = "/AlphaOutput";
+      }, 100) //필요한 시간 만큼 숫자조정 => 1000 = 1초
+      //while 문으로 작성하려고 해도 뭘 기준으로 해야 하는 지 모르겠음.
 
     } catch (error) {
       console.log("데이터 가져오기 실패:", error);
@@ -103,39 +106,45 @@ export default function AlphaFold(){
   };
   
   return (
-    <div className="page">
-      <div className="titleprotein">단백질 시퀀스를 입력해 주세요</div>
+    <div className="loading_page">
 
-      <div className="contentWrap">
-        <div className="inputTitle">단백질 시퀀스</div>
-        <div className="inputWrap">
-          <input
-            className="input"
-            value={protein} //input으로 받은 프로틴 시퀀스
-            onChange={handleInput}
-            onKeyUp={changeButton}
-            
+      {
+        loading?
+        <ClimbingBoxLoader className="loading_page"
+          size = {30}
+          color={"#123abc"}
+          loading= {loading}
           />
+        :
+        <div className="inside_page">
+          <div className="titleprotein">단백질 시퀀스를 입력해 주세요</div>
+          <div className="contentWrap">
+            <div className="inputTitle">단백질 시퀀스</div>
+            <div className="inputWrap">
+              <input
+                className="input"
+                value={protein} //input으로 받은 프로틴 시퀀스
+                onChange={handleInput}
+                onKeyUp={changeButton}
+              />
+            </div> {/* inputWrap 끝 */}
+            <div className="errorMessageWrap">올바른 시퀀스를 입력해 주세요</div>
+          </div>{/* contentWrap 끝 */}
+          <div>{/* button 시작 */}
+            <button 
+            disabled={button} 
+            onClick={confirm} 
+            className="bottomButton">
+              확인
+            </button>
+          </div>{/* button 끝 */}
+          <div className="inputTitle"> 알파폴드 체험 화면입니다</div>
+        </div> //inside wrap 끝
 
-          {/* place holder 넣어 보기 */}
-        </div>
+      }
 
-        <div className="errorMessageWrap">올바른 시퀀스를 입력해 주세요</div>
-      </div>
-      <div>
-        <button 
-        disabled={button} 
-        onClick={confirm} 
-        className="bottomButton">
-          확인
-        </button>
-      </div>
-      <div className="inputTitle"> 
-        알파폴드 체험 화면입니다
-      </div>
-      <br></br>
-      <div>
-      </div>
-    </div>
+      
+    </div>//loading page 끝
+    
   );
 }

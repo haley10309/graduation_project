@@ -20,7 +20,7 @@ export default function Search(){
   const url = "/api/Input";
   const config = {"Content-Type": 'application/json'};
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false); //로딩할지 말지에 대한 부울 변수
 
  
   
@@ -52,7 +52,7 @@ export default function Search(){
     //api post
 
     // prediction request
-const post = (seq) => {
+const post = (seq) => { //seq = 사용자 input 값
   //Promise로 fetch를 감싼다
   return new Promise((resolve, reject) => {
     
@@ -74,11 +74,10 @@ const post = (seq) => {
             if(res == null){
               console.log("데이터 가져오기 실패");
             }
-            setProteinSearchID(res);
-            resolve(res);
-           
-            // localStorage.setItem('pdb_protein', res);
-            //console.log(pdb_predict);
+            setProteinSearchID(res); // 전혀 작동 x => 이제동안 안됐던 이유 
+            resolve(res); //promise 에서 사용하는 resolve를 사용해야만 return 가능
+            console.log("proteinSearchID: ", proteinSearchID);
+            
         });
     });
   };
