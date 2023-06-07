@@ -51,7 +51,7 @@ export default function AFoutput() {
       <div className="container">
         <div id="id" className="mol-container"></div>
         <h1 className="korean-protein-expaination">{Protein_input}</h1>
-        <button>Download File</button>
+        
       </div>
     </div>
   );
