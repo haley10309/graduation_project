@@ -69,10 +69,8 @@ export default function AlphaOutput() {
   });
   
   return (
-    <div>
-      <select className="visualization">
-        <option value="3dmolAPI" selected>프로틴 시퀀스 화면</option>
-      </select>
+    <div className="page">
+      <div className="container">
       <div id="container-predict" className="mol-container"></div>
       <div>
       <button 
@@ -81,8 +79,9 @@ export default function AlphaOutput() {
           Download PDB File
       </button>
       </div>
-      <h1 className="">
-      </h1>
+
+      <h1 className="korean-protein-expaination">{pdbdata}</h1>
+      </div>
     </div>
   );
 }

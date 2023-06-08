@@ -142,7 +142,7 @@ export default function AlphaFold(){
         setLoading(false);
         // 시각화 창
         window.location.href = "/AlphaOutput";
-      }, 360000) //필요한 시간 만큼 숫자조정 => 1000 = 1초
+      }, 60000) //필요한 시간 만큼 숫자조정 => 1000 = 1초
       //while 문으로 작성하려고 해도 뭘 기준으로 해야 하는 지 모르겠음.
 
     } catch (error) {
