@@ -14,7 +14,8 @@ import Pred_ability from "./pages/Reference/Pred_ability.jsx";
 import AlphaFold from "./pages/AlphaFold";
 import AlphaOutput from "./pages/AlphaOutput";
 
-
+// "proxy": "http://172.31.15.171:5000",
+//"proxy": "http://192.168.219.103:5000"
 
 function App() {
   //console.log(window.location.pathname)

@@ -53,7 +53,7 @@ const Navbar = () => {
                     <a href="/Refer/HowAlpha/*">HowAlpha</a>
                 </li>
                 <li>
-                    <a href="/Refer/HowRoseta/*">HowRoseta</a>
+                    <a href="/Refer/HowRoseta/*">HowRoseTTA</a>
                 </li>
 
 
