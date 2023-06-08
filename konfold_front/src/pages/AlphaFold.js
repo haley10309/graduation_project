@@ -1,7 +1,5 @@
 import React from "react";
-import axios from "axios";
 import { useState } from "react";
-import ClipLoader from "react-spinners/ClipLoader";
 import ClimbingBoxLoader from 'react-spinners/ClimbingBoxLoader';
 
 
@@ -114,6 +112,7 @@ export default function AlphaFold(){
     // 확인 후 다음 페이지
     event.preventDefault();
     console.log("start_test:", protein);
+    localStorage.setItem("input_seq", protein)
 
     setLoading(true);
     
@@ -134,15 +133,15 @@ export default function AlphaFold(){
       reader.onload = function(event) {
         let pdbdata = event.target.result
         // save pdb data to local storage
-        localStorage.setItem('pdbData', pdbdata)
-        setPDBPredict(pdbdata)
+        localStorage.setItem("pdbData", pdbdata)
+        //etPDBPredict(pdbdata)
       };
       reader.readAsText(predictResult);
       setTimeout(() => {
         setLoading(false);
         // 시각화 창
         window.location.href = "/AlphaOutput";
-      }, 60000) //필요한 시간 만큼 숫자조정 => 1000 = 1초
+      }, 1000) //필요한 시간 만큼 숫자조정 => 1000 = 1초 //360000
       //while 문으로 작성하려고 해도 뭘 기준으로 해야 하는 지 모르겠음.
 
     } catch (error) {

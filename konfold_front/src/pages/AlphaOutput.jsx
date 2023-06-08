@@ -18,10 +18,11 @@ export default function AlphaOutput() {
       );
   }
 //css 끝
-  
-  let blob = "";
-  var url = "";
+
+  let blobURL = "";
   let pdbdata = "";
+  let input_seq = "";
+
 
   const getDataLocalStorage = (name) => {
     var localData = localStorage.getItem(name);
@@ -29,16 +30,29 @@ export default function AlphaOutput() {
   }
 
   const pdbdownload = () => {
-    //const pdbblob = pdbdata.blob();
-    // if (pdbblob) {
-    //   window.location.href = pdbblob;
-    // }
+    const file = document.createElement('a');
+    const pdbblob = new Blob([pdbdata], {
+      type: "chemical/x-pdb",
+    });
+    console.log(pdbblob)
+    if (pdbblob) {
+      file.href = URL.createObjectURL(pdbblob)
+      //file.download = `${input_seq}.pdb`
+      file.download = "predictresult.pdb"
+      document.body.appendChild(file); //FireFox
+      file.click();
+      file.remove();
+      //blobURL = URL.createObjectURL(pdbblob)
+      //window.location.href = blobURL;
+    }
   };
 
 
   if (localStorage.getItem('pdbData')) {
     pdbdata = getDataLocalStorage('pdbData');
     console.log(pdbdata);
+    input_seq = getDataLocalStorage("input_seq");
+    console.log(input_seq);
   }
 
   // 시각화
@@ -53,19 +67,6 @@ export default function AlphaOutput() {
     viewer.render();                                      /* render scene */
     viewer.zoom(0.8, 1000);                               /* slight zoom */
   
-   // 시각화
-  //  $(function() {
-  //   let element = $('#container-predict');
-  //   let config = { backgroundColor: 'orange' };
-  //   let viewer = $3Dmol.createViewer( element, config );
-  //   let getId = "pdb:" + "1A00";
-
-  //   $3Dmol.download(getId, viewer, {}, function() {
-  //     viewer.setStyle({'model': -1}, {"cartoon": {'color': 'spectrum'}})
-  //     viewer.zoomTo();
-  //     viewer.render();
-  //     viewer.zoom(0.8, 2000);
-  //   })
   });
   
   return (
@@ -80,7 +81,7 @@ export default function AlphaOutput() {
       </button>
       </div>
 
-      <h1 className="korean-protein-expaination">{pdbdata}</h1>
+      <h1 className="korean-protein-expaination">{input_seq}</h1>
       </div>
     </div>
   );
